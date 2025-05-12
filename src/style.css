@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+
+@theme {
+  --color-purple: #bb95dc;
+  --color-purple-95: #f3ecf9;
+  --color-purple-90: #e6d9f2;
+  --color-purple-80: #ceb2e6;
+  --color-purple-70: #b58cd9;
+  --color-purple-60: #9d66cc;
+  --color-purple-50: #843fc0;
+  --color-purple-40: #6a3399;
+  --color-purple-30: #4f2673;
+  --color-purple-20: #35194d;
+  --color-purple-10: #1a0d26;
+  --color-red: #dc95b6;
+  --color-red-95: #f9ecf2;
+  --color-red-90: #f2d9e5;
+  --color-red-80: #e6b2ca;
+  --color-red-70: #d98cb0;
+  --color-red-60: #cc6695;
+  --color-red-50: #c03f7b;
+  --color-red-40: #993362;
+  --color-red-30: #73264a;
+  --color-red-20: #4d1931;
+  --color-red-10: #260d19;
+  --color-orange: #dcbb95;
+  --color-orange-95: #f9f3ec;
+  --color-orange-90: #f2e6d9;
+  --color-orange-80: #e6ceb2;
+  --color-orange-70: #d9b58c;
+  --color-orange-60: #cc9d66;
+  --color-orange-50: #c0843f;
+  --color-orange-40: #996a33;
+  --color-orange-30: #734f26;
+  --color-orange-20: #4d3519;
+  --color-orange-10: #261a0d;
+  --color-green: #b6dc95;
+  --color-green-95: #f2f9ec;
+  --color-green-90: #e5f2d9;
+  --color-green-80: #cae6b2;
+  --color-green-70: #b0d98c;
+  --color-green-60: #95cc66;
+  --color-green-50: #7bc03f;
+  --color-green-40: #629933;
+  --color-green-30: #4a7326;
+  --color-green-20: #314d19;
+  --color-green-10: #19260d;
+  --color-turquoise: #95dcbb;
+  --color-turquoise-95: #ecf9f3;
+  --color-turquoise-90: #d9f2e6;
+  --color-turquoise-80: #b2e6ce;
+  --color-turquoise-70: #8cd9b5;
+  --color-turquoise-60: #66cc9d;
+  --color-turquoise-50: #3fc084;
+  --color-turquoise-40: #33996a;
+  --color-turquoise-30: #26734f;
+  --color-turquoise-20: #194d35;
+  --color-turquoise-10: #0d261a;
+  --color-blue: #95b6dc;
+  --color-blue-95: #ecf2f9;
+  --color-blue-90: #d9e5f2;
+  --color-blue-80: #b2cae6;
+  --color-blue-70: #8cb0d9;
+  --color-blue-60: #6695cc;
+  --color-blue-50: #3f7bc0;
+  --color-blue-40: #336299;
+  --color-blue-30: #264a73;
+  --color-blue-20: #19314d;
+  --color-blue-10: #0d1926;
+  --color-grey: #b3abba;
+  --color-grey-95: #f2f1f3;
+  --color-grey-80: #ccc7d1;
+  --color-grey-70: #b3abba;
+  --color-grey-60: #9a8fa3;
+  --color-grey-50: #80738c;
+  --color-grey-40: #675c70;
+  --color-grey-30: #4d4554;
+  --color-grey-20: #332e38;
+  --color-grey-10: #1a171c;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
