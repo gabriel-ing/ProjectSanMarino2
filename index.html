@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project San Marino 2.0</title>
+    <script type="module" crossorigin src="/ProjectSanMarino2/assets/index-DRu4jw8c.js"></script>
+    <link rel="stylesheet" crossorigin href="/ProjectSanMarino2/assets/index-BKhTmPnS.css">
+  </head>
+  <body>
+    <div
+      class="bg-purple-20 h-20 text-purple-95 p-5 text-xl flex justify-between"
+    >
+      <div class="font-semibold">San Marino to Sicily</div>
+
+      <div class="text-sm flex flex-col">
+        <div class="font-bold">Distance</div>
+        <div class="flex justify-between">
+          Total:
+          <div id="distance-label" class="ml-5">Loading...</div>
+        </div>
+        <div class="flex">
+          % Complete:
+          <div id="distance-percentage-label" class="ml-5">Loading...</div>
+        </div>
+      </div>
+      <div class="text-sm flex flex-col">
+        <div class="font-bold">Time</div>
+        <div class="flex justify-between">
+          Current Day:
+          <div id="days-label" class="ml-5">Loading...</div>
+        </div>
+        <div class="flex">
+          Percentage Passed:
+          <div id="days-percentage-label" class="ml-5">Loading...</div>
+        </div>
+      </div>
+      <div class="text-sm flex flex-col">
+        <div class="font-bold">Elevation</div>
+        <div class="flex justify-between">
+          Total:
+          <div id="elevation-label" class="ml-5">Loading...</div>
+        </div>
+        <div class="flex">
+          Percentage:
+          <div id="elevation-percentage-label" class="ml-5">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons flex h-14">
+      <div class="rounded-3xl border-blue-10 p-1 border-2 w-50 text-sm flex m-1">
+        <label class="switch">
+          <input id="separate-switch" type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        Separate Runners
+      </div>
+    
+    </div>
+    <div class="flex grid-cols-2 grid gap-2 h-[80vh] m-3 min-w-[300px]">
+      <div id="distanceGraph" class="p-5 border-1 h-full"></div>
+      <div id="routesMap" class="border-1 h-full"></div>
+      <div id="elevationGraph" class="p-5 border-1 h-full"></div>
+      <div id="projectMap" class="border-1 h-full"></div>
+    </div>
+  </body>
+</html>
