@@ -11,8 +11,8 @@
     <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project San Marino 2.0</title>
-    <script type="module" crossorigin src="/ProjectSanMarino2/assets/index-DRu4jw8c.js"></script>
-    <link rel="stylesheet" crossorigin href="/ProjectSanMarino2/assets/index-BKhTmPnS.css">
+    <script type="module" crossorigin src="/ProjectSanMarino2/assets/index-DUQ-V0cR.js"></script>
+    <link rel="stylesheet" crossorigin href="/ProjectSanMarino2/assets/index-BnvH1F3N.css">
   </head>
   <body>
     <div
@@ -56,14 +56,42 @@
     </div>
 
     <div class="buttons flex h-14">
-      <div class="rounded-3xl border-blue-10 p-1 border-2 w-50 text-sm flex m-1">
+      <div
+        class="rounded-3xl border-blue-10 p-1 border-2 w-50 text-sm flex m-1"
+      >
         <label class="switch">
           <input id="separate-switch" type="checkbox" />
           <span class="slider round"></span>
         </label>
         Separate Runners
       </div>
-    
+      <div
+        class="rounded-3xl border-blue-10 p-1 border-2 w-50 text-sm flex m-1"
+      >
+        <label class="switch">
+          <input id="show-full-switch" type="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        Show Full Period
+      </div>
+      <div
+      class="rounded-3xl border-blue-10 p-1 border-2 w-50 text-sm flex m-1"
+    >
+      <label class="switch">
+        <input id="weekly-switch" type="checkbox" />
+        <span class="slider round"></span>
+      </label>
+      Aggregate Weekly
+    </div>
+    <!-- <div
+    class="rounded-3xl border-blue-10 p-1 border-2 w-50 text-sm flex m-1"
+  >
+    <label class="switch">
+      <input id="bar-switch" type="checkbox" checked />
+      <span class="slider round"></span>
+    </label>
+    Aggregate Weekly
+  </div> -->
     </div>
     <div class="flex grid-cols-2 grid gap-2 h-[80vh] m-3 min-w-[300px]">
       <div id="distanceGraph" class="p-5 border-1 h-full"></div>
@@ -71,5 +99,6 @@
       <div id="elevationGraph" class="p-5 border-1 h-full"></div>
       <div id="projectMap" class="border-1 h-full"></div>
     </div>
+    <div id="loader-div"><span class="loader"></span></div>
   </body>
 </html>
