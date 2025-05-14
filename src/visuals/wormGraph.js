@@ -6,7 +6,7 @@ import {
   targetDate,
   nDays,
   targetDistance,
-} from "../../params";
+} from "../params";
 
 export const cumulativeData = (data, value = "distance") => {
   let count = 0;
@@ -19,43 +19,26 @@ export const cumulativeData = (data, value = "distance") => {
 };
 
 export const wormGraph = () => {
-  // let width;
-  // let height;
+
   let data;
   let separate = true;
   let start = startDate;
   let end = targetDate;
   let yMax;
   let targetY;
-  let ySeries = [];
   let xValue;
   let showFull = false;
-
   let radius = 3;
   let colorValue;
-  let colorList = [
-    "#00b894",
-    "#6c5ce7",
-    "#fdcb6e",
-    "#e17055",
-    "#00cec9",
-    "#d63031",
-    "#e84393",
-    "#0984e3",
-  ];
   let xLabel;
   let yLabel;
   let tooltipValue = (d) => `${d.xOriginal} <br>${d.yOriginal}`;
   let tooltip;
-  let xType;
-  let yType;
-  let x;
-  let y;
-
   let additionalClickFunction = (event, d) => null;
   let backgroundOnClick = () => null;
   let title;
   let curveType;
+  
   const my = (selection) => {
     // selection.attr("width", width).attr("height", height);
     const width = selection.node().getBoundingClientRect().width;
@@ -65,24 +48,24 @@ export const wormGraph = () => {
     let margin = {
       top: height / 12,
       right: width / 12,
-      bottom: height / 12,
+      bottom: height / 6,
       left: width / 10,
     };
     selection.attr("viewBox", `0 0 ${width} ${height}`);
-    //console.log(selection);
+
     let currentTarget = (targetY * currentDay) / nDays;
 
-    // console.log(data);
-    // console.log("current ", currentTarget);
     if (!showFull) {
       end = new Date();
       yMax =
         currentTarget > d3.max(data, (d) => d.cumSum)
           ? currentTarget
           : d3.max(data, (d) => d.cumSum);
-      console.log(currentTarget, yMax);
+      // console.log(currentTarget, yMax);
     } else {
       yMax = targetY;
+      console.log(yMax);
+      radius = 1.5;
       end = targetDate;
     }
 
@@ -134,7 +117,7 @@ export const wormGraph = () => {
             .attr("x1", xScale(start))
             .attr("x2", xScale(end))
             .attr("y1", yScale(0))
-            .attr("y2", yScale(currentTarget))
+            .attr("y2", yScale(showFull ? targetY : currentTarget))
             .call((enter) => enter.transition().duration(1000));
         },
         (update) => {
@@ -146,13 +129,13 @@ export const wormGraph = () => {
               .attr("x1", xScale(start))
               .attr("x2", xScale(end))
               .attr("y1", yScale(0))
-              .attr("y2", yScale(currentTarget))
+              .attr("y2", yScale(showFull ? targetY : currentTarget))
           );
         }
       );
 
     let seriesData;
-    console.log(separate);
+
     if (separate) {
       seriesData = [
         {
@@ -170,7 +153,6 @@ export const wormGraph = () => {
       seriesData = [{ name: null, color: "#6a3399", data: data }];
     }
 
-    console.log(seriesData);
     const paths = selection
       .selectAll(".line-chart-line")
       .data(seriesData)
@@ -182,10 +164,7 @@ export const wormGraph = () => {
             .attr("class", (d) => `line-chart-line series{${d.name}}`)
             .attr("stroke", (d) => d.color)
             .attr("stroke-width", 3)
-            .attr("d", (d) => {
-              console.log(d);
-              return lineGenerator(d.data);
-            })
+            .attr("d", (d) => lineGenerator(d.data))
             .call((enter) =>
               enter
                 .transition()
@@ -197,7 +176,7 @@ export const wormGraph = () => {
           update.call((update) =>
             update
               .transition()
-              .delay((d, i) => i * 200)
+
               .duration(1000)
               .attr("d", (d) => lineGenerator(d.data))
               .attr("stroke", (d) => d.color)
@@ -243,17 +222,18 @@ export const wormGraph = () => {
               tooltip.transition().duration(500).style("opacity", 0);
             })
             .call((enter) =>
-              enter.transition().delay(1000).duration(1000).attr("r", 4)
+              enter.transition().delay(1000).duration(1000).attr("r", radius)
             );
         },
         (update) =>
-          update
-            .attr("r", 3)
-            .attr("cx", (d) => xScale(d.date))
-            .attr("cy", (d) => yScale(d.cumSum))
-            .call((update) => {
-              update.transition().delay(1000).duration(1000).attr("r", 4);
-            })
+          update.call((update) => {
+            update
+              .transition()
+              .duration(1000)
+              .attr("cx", (d) => xScale(d.date))
+              .attr("cy", (d) => yScale(d.cumSum))
+              .attr("r", radius);
+          })
       );
 
     selection
@@ -282,7 +262,7 @@ export const wormGraph = () => {
       .attr("text-anchor", "middle")
 
       .attr("x", margin.left + (width - margin.left - margin.right) / 2)
-      .attr("y", height - (margin.bottom / 10))
+      .attr("y", height - margin.bottom / 10)
       .text(xLabel);
 
     selection
@@ -297,7 +277,6 @@ export const wormGraph = () => {
       .text(yLabel);
 
     if (title) {
-      //console.log(title);
       selection
         .selectAll(".titleLabel")
         .data([null])
@@ -337,12 +316,6 @@ export const wormGraph = () => {
   my.yMax = function (_) {
     return arguments.length ? ((radius = +_), my) : radius;
   };
-  my.colorValue = function (_) {
-    return arguments.length ? ((colorValue = _), my) : colorValue;
-  };
-  my.colorList = function (_) {
-    return arguments.length ? ((colorList = _), my) : colorList;
-  };
   my.tooltipValue = function (_) {
     return arguments.length ? ((tooltipValue = _), my) : tooltipValue;
   };
@@ -371,7 +344,6 @@ export const wormGraph = () => {
     return arguments.length ? ((targetY = _), my) : targetY;
   };
   my.separate = function (_) {
-    console.log(_);
     return arguments.length ? ((separate = _), my) : separate;
   };
 
